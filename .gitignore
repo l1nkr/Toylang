@@ -4,3 +4,8 @@
 # object
 build/
 *.o
+*.dSYM
+*.out
+*.gch
+main
+llvm/
