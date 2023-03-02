@@ -1,1 +1,0 @@
-aux_source_directory(. DIR_TEST_SRCS)
