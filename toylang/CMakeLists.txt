@@ -1,0 +1,12 @@
+find_package(LLVM REQUIRED)
+include_directories(${LLVM_INCLUDE_DIRS})
+# include_directories(${PROJECT_SOURCE_DIR})
+add_executable(toylang toylang.cpp)
+target_link_libraries(toylang PUBLIC ast)
+target_link_libraries(toylang PUBLIC kaleidoscope)
+target_link_libraries(toylang PUBLIC lexer)
+target_link_libraries(toylang PUBLIC logger)
+target_link_libraries(toylang PUBLIC parser)
+# target_link_libraries(main PUBLIC LLVM::llvm)
+
+target_link_libraries(toylang PUBLIC LLVM)
