@@ -1,10 +1,11 @@
 file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp include/*.h)
 find_package(LLVM REQUIRED)
-
+# llvm_map_components_to_libnames(LLVM_LIBS all)
+# message(STATUS ${LLVM_LIBS})
 add_library(ast STATIC ${srcs})
 target_include_directories(ast PUBLIC ${LLVM_INCLUDE_DIRS})
 target_include_directories(ast PUBLIC include)
 # include_directories(${PROJECT_SOURCE_DIR})
-target_link_libraries(ast PUBLIC ${LLVM_LIBS})
+target_link_libraries(ast PUBLIC LLVM)
 target_link_libraries(ast PUBLIC kaleidoscope)
 target_link_libraries(ast PUBLIC logger)
