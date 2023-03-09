@@ -1,37 +1,31 @@
 // lexer headers
-#include "lexer/lexer.h"
-#include "lexer/token.h"
+#include <lexer/lexer.h>
+#include <lexer/token.h>
 
 // AST headers
-#include "ast/BinaryExprAST.h"
-#include "ast/CallExprAST.h"
-#include "ast/ExprAST.h"
-#include "ast/FunctionAST.h"
-#include "ast/NumberExprAST.h"
-#include "ast/PrototypeAST.h"
-#include "ast/VariableExprAST.h"
+#include <ast/ast.h>
 
 // parser headers
-#include "parser/parser.h"
+#include <parser/parser.h>
 
 // logger headers
-#include "logger/logger.h"
+#include <logger/logger.h>
 
 // kaleidoscope headers
-#include "kaleidoscope/kaleidoscope.h"
+#include <kaleidoscope/kaleidoscope.h>
 
 // LLVM headers
-#include "llvm/ADT/APFloat.h"
-#include "llvm/ADT/STLExtras.h"
-#include "llvm/IR/BasicBlock.h"
-#include "llvm/IR/Constants.h"
-#include "llvm/IR/DerivedTypes.h"
-#include "llvm/IR/Function.h"
-#include "llvm/IR/IRBuilder.h"
-#include "llvm/IR/LLVMContext.h"
-#include "llvm/IR/Module.h"
-#include "llvm/IR/Type.h"
-#include "llvm/IR/Verifier.h"
+#include <llvm/ADT/APFloat.h>
+#include <llvm/ADT/STLExtras.h>
+#include <llvm/IR/BasicBlock.h>
+#include <llvm/IR/Constants.h>
+#include <llvm/IR/DerivedTypes.h>
+#include <llvm/IR/Function.h>
+#include <llvm/IR/IRBuilder.h>
+#include <llvm/IR/LLVMContext.h>
+#include <llvm/IR/Module.h>
+#include <llvm/IR/Type.h>
+#include <llvm/IR/Verifier.h>
 
 // stdlib headers
 #include <algorithm>
@@ -86,18 +80,18 @@ static void MainLoop() {
     fprintf(stderr, "ready> ");
 
     switch (CurTok) {
-      case tok_eof:
+    case tok_eof:
       return;
-      case ';':
+    case ';':
       getNextToken();
       break;
-      case tok_def:
+    case tok_def:
       HandleDefinition();
       break;
-      case tok_extern:
+    case tok_extern:
       HandleExtern();
       break;
-      default:
+    default:
       HandleTopLevelExpression();
       break;
     }

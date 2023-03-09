@@ -1,5 +1,7 @@
-#include "parser/parser.h"
-
+#include <parser/parser.h>
+#include <lexer/lexer.h>
+#include <lexer/token.h>
+#include <logger/logger.h>
 std::map<char, int> BinopPrecedence;
 
 static int GetTokPrecedence() {
@@ -8,7 +10,8 @@ static int GetTokPrecedence() {
   }
 
   int TokPrec = BinopPrecedence[CurTok];
-  if (TokPrec <= 0) return -1;
+  if (TokPrec <= 0)
+    return -1;
 
   return TokPrec;
 }
@@ -77,18 +80,19 @@ std::unique_ptr<ExprAST> ParseIdentifierExpr() {
 
 std::unique_ptr<ExprAST> ParsePrimary() {
   switch (CurTok) {
-    default:
+  default:
     return LogError("Unknown token when expecting an expression");
-    case tok_identifier:
+  case tok_identifier:
     return ParseIdentifierExpr();
-    case tok_number:
+  case tok_number:
     return ParseNumberExpr();
-    case '(':
+  case '(':
     return ParseParenExpr();
   }
 }
 
-std::unique_ptr<ExprAST> ParseBinOpRHS(int ExprPrec, std::unique_ptr<ExprAST> LHS) {
+std::unique_ptr<ExprAST> ParseBinOpRHS(int ExprPrec,
+                                       std::unique_ptr<ExprAST> LHS) {
   while (true) {
     int TokPrec = GetTokPrecedence();
 
@@ -112,7 +116,8 @@ std::unique_ptr<ExprAST> ParseBinOpRHS(int ExprPrec, std::unique_ptr<ExprAST> LH
       }
     }
 
-    LHS = std::make_unique<BinaryExprAST>(BinOp, std::move(LHS), std::move(RHS));
+    LHS =
+        std::make_unique<BinaryExprAST>(BinOp, std::move(LHS), std::move(RHS));
   }
 }
 
@@ -169,7 +174,8 @@ std::unique_ptr<FunctionAST> ParseDefinition() {
 
 std::unique_ptr<FunctionAST> ParseTopLevelExpr() {
   if (auto E = ParseExpression()) {
-    auto Proto = std::make_unique<PrototypeAST>("__anon_expr", std::vector<std::string>());
+    auto Proto = std::make_unique<PrototypeAST>("__anon_expr",
+                                                std::vector<std::string>());
     return std::make_unique<FunctionAST>(std::move(Proto), std::move(E));
   }
 

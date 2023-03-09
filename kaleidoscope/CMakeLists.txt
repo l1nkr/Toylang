@@ -1,6 +1,6 @@
-find_package(LLVM REQUIRED CONFIG)
-
-include_directories(${PROJECT_SOURCE_DIR})
-include_directories(${LLVM_INCLUDE_DIRS})
-
-add_library(kaleidoscope STATIC kaleidoscope.cpp)
+file(GLOB_RECURSE srcs CONFIGURE_DEPENDS src/*.cpp include/*.h)
+find_package(LLVM REQUIRED)
+add_library(kaleidoscope STATIC ${srcs})
+target_include_directories(kaleidoscope PUBLIC ${LLVM_INCLUDE_DIRS})
+target_include_directories(kaleidoscope PUBLIC include)
+target_link_libraries(kaleidoscope PUBLIC ${LLVM_LIBS})

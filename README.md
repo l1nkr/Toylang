@@ -4,4 +4,9 @@
 
 本教程的目标是循序渐进地描绘一门语言，并详述它的开发过程。在这一过程中，我们将针对语言设计以及LLVM的用法等问题展开讨论。与此同时，我们会给出代码并进行讲解，你免各种细节把你弄得晕头转向。
 
-[参考](https://llvm-tutorial-cn.readthedocs.io/en/latest/chapter-1.html)
+https://llvm-tutorial-cn.readthedocs.io/en/latest/chapter-1.html
+
+## TODO
+
+- add IfExprAST
+

@@ -1,4 +1,4 @@
-#include "kaleidoscope.h"
+#include <kaleidoscope/kaleidoscope.h>
 
 // This is an object that owns LLVM core data structures
 llvm::LLVMContext TheContext;
