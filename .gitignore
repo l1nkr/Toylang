@@ -1,5 +1,6 @@
 # ide
 .vscode/
+.idea/
 
 # object
 build/
@@ -9,3 +10,6 @@ build/
 *.gch
 main
 llvm/
+
+# debug
+cmake-build-debug/
